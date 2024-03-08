@@ -27,10 +27,15 @@ def register(request):
     value=UserSerializer(users,many=True)
     return Response(value.data)
 
-
-def indexpage(request):
-    return render(request,"index.html",{})
-
+@api_view(["POST"])
+def createUser(request):
+    if request.method=="POST":
+        user_form=UserSerializer(data=request.data)
+        if user_form.is_valid():
+            user_form.save()
+            return Response({"message":"User created successfully"},status=status.HTTP_200_OK)    
+        else:
+            return Response({"message":"Invalid data"},status=status.HTTP_404_NOT_FOUND)
 
 
 

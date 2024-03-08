@@ -4,8 +4,8 @@ from .models import CustomUser
 
 class UserSerializer(ModelSerializer):
     class Meta:
-        fields=["full_name","phone_number","email"]
+        fields=["full_name","phone_number","email","password"]
         model=CustomUser
-        read_only_fields = ['email']
+        # read_only_fields = ['email']
         
 
